@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+                xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+                ID="_response123"
+                IssueInstant="2024-01-15T10:30:00Z"
+                Destination="https://sp.example.com/acs"
+                InResponseTo="_request456">
+    <saml:Issuer>https://idp.example.com</saml:Issuer>
+    <samlp:Status>
+        <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+    </samlp:Status>
+    <saml:Assertion ID="_assertion789"
+                    IssueInstant="2024-01-15T10:30:00Z">
+        <saml:Issuer>https://idp.example.com</saml:Issuer>
+        <saml:Subject>
+            <saml:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress"
+                        SPNameQualifier="https://sp.example.com">user@example.com</saml:NameID>
+        </saml:Subject>
+        <saml:Conditions NotBefore="2024-01-15T10:25:00Z"
+                        NotOnOrAfter="2024-01-15T10:35:00Z">
+            <saml:AudienceRestriction>
+                <saml:Audience>https://sp.example.com</saml:Audience>
+            </saml:AudienceRestriction>
+        </saml:Conditions>
+        <saml:AuthnStatement AuthnInstant="2024-01-15T10:29:00Z"
+                            SessionIndex="_session123">
+            <saml:AuthnContext>
+                <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
+            </saml:AuthnContext>
+        </saml:AuthnStatement>
+        <saml:AttributeStatement>
+            <saml:Attribute Name="email" FriendlyName="Email">
+                <saml:AttributeValue>user@example.com</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="firstName" FriendlyName="First Name">
+                <saml:AttributeValue>John</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="lastName" FriendlyName="Last Name">
+                <saml:AttributeValue>Doe</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="groups" FriendlyName="Groups">
+                <saml:AttributeValue>admins</saml:AttributeValue>
+                <saml:AttributeValue>users</saml:AttributeValue>
+            </saml:Attribute>
+        </saml:AttributeStatement>
+    </saml:Assertion>
+</samlp:Response>

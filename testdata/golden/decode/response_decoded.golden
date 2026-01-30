@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response xmlns="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:_xmlns="xmlns" _xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" _xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="_response123" IssueInstant="2024-01-15T10:30:00Z" Destination="https://sp.example.com/acs" InResponseTo="_request456">
+    
+  <Issuer xmlns="urn:oasis:names:tc:SAML:2.0:assertion">https://idp.example.com</Issuer>
+    
+  <Status xmlns="urn:oasis:names:tc:SAML:2.0:protocol">
+        
+    <StatusCode xmlns="urn:oasis:names:tc:SAML:2.0:protocol" Value="urn:oasis:names:tc:SAML:2.0:status:Success"></StatusCode>
+    
+  </Status>
+    
+  <Assertion xmlns="urn:oasis:names:tc:SAML:2.0:assertion" ID="_assertion789" IssueInstant="2024-01-15T10:30:00Z">
+        
+    <Issuer xmlns="urn:oasis:names:tc:SAML:2.0:assertion">https://idp.example.com</Issuer>
+        
+    <Subject xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+            
+      <NameID xmlns="urn:oasis:names:tc:SAML:2.0:assertion" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress" SPNameQualifier="https://sp.example.com">user@example.com</NameID>
+        
+    </Subject>
+        
+    <Conditions xmlns="urn:oasis:names:tc:SAML:2.0:assertion" NotBefore="2024-01-15T10:25:00Z" NotOnOrAfter="2024-01-15T10:35:00Z">
+            
+      <AudienceRestriction xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                
+        <Audience xmlns="urn:oasis:names:tc:SAML:2.0:assertion">https://sp.example.com</Audience>
+            
+      </AudienceRestriction>
+        
+    </Conditions>
+        
+    <AuthnStatement xmlns="urn:oasis:names:tc:SAML:2.0:assertion" AuthnInstant="2024-01-15T10:29:00Z" SessionIndex="_session123">
+            
+      <AuthnContext xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                
+        <AuthnContextClassRef xmlns="urn:oasis:names:tc:SAML:2.0:assertion">urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</AuthnContextClassRef>
+            
+      </AuthnContext>
+        
+    </AuthnStatement>
+        
+    <AttributeStatement xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+            
+      <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" Name="email" FriendlyName="Email">
+                
+        <AttributeValue xmlns="urn:oasis:names:tc:SAML:2.0:assertion">user@example.com</AttributeValue>
+            
+      </Attribute>
+            
+      <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" Name="firstName" FriendlyName="First Name">
+                
+        <AttributeValue xmlns="urn:oasis:names:tc:SAML:2.0:assertion">John</AttributeValue>
+            
+      </Attribute>
+            
+      <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" Name="lastName" FriendlyName="Last Name">
+                
+        <AttributeValue xmlns="urn:oasis:names:tc:SAML:2.0:assertion">Doe</AttributeValue>
+            
+      </Attribute>
+            
+      <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" Name="groups" FriendlyName="Groups">
+                
+        <AttributeValue xmlns="urn:oasis:names:tc:SAML:2.0:assertion">admins</AttributeValue>
+                
+        <AttributeValue xmlns="urn:oasis:names:tc:SAML:2.0:assertion">users</AttributeValue>
+            
+      </Attribute>
+        
+    </AttributeStatement>
+    
+  </Assertion>
+
+</Response>
+

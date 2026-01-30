@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+                    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+                    ID="_request123"
+                    IssueInstant="2024-01-15T10:28:00Z"
+                    Destination="https://idp.example.com/sso"
+                    AssertionConsumerServiceURL="https://sp.example.com/acs"
+                    ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST">
+    <saml:Issuer>https://sp.example.com</saml:Issuer>
+    <samlp:NameIDPolicy Format="urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress"/>
+</samlp:AuthnRequest>

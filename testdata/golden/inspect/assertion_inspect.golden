@@ -1,0 +1,30 @@
+{
+  "type": "Assertion",
+  "id": "_assertion789",
+  "issue_instant": "2024-01-15T10:30:00Z",
+  "issuer": "https://idp.example.com",
+  "subject": {
+    "name_id": "user@example.com",
+    "name_id_format": "urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress"
+  },
+  "conditions": {
+    "not_before": "2024-01-15T10:25:00Z",
+    "not_on_or_after": "2024-01-15T10:35:00Z",
+    "audience_restriction": [
+      "https://sp.example.com"
+    ]
+  },
+  "authn_statement": {
+    "authn_instant": "2024-01-15T10:29:00Z",
+    "session_index": "_session123",
+    "authn_context_class_ref": "urn:oasis:names:tc:SAML:2.0:ac:classes:Password"
+  },
+  "attributes": [
+    {
+      "name": "email",
+      "values": [
+        "user@example.com"
+      ]
+    }
+  ]
+}

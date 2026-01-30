@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+                ID="_assertion789"
+                IssueInstant="2024-01-15T10:30:00Z">
+    <saml:Issuer>https://idp.example.com</saml:Issuer>
+    <saml:Subject>
+        <saml:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress">user@example.com</saml:NameID>
+    </saml:Subject>
+    <saml:Conditions NotBefore="2024-01-15T10:25:00Z"
+                    NotOnOrAfter="2024-01-15T10:35:00Z">
+        <saml:AudienceRestriction>
+            <saml:Audience>https://sp.example.com</saml:Audience>
+        </saml:AudienceRestriction>
+    </saml:Conditions>
+    <saml:AuthnStatement AuthnInstant="2024-01-15T10:29:00Z"
+                        SessionIndex="_session123">
+        <saml:AuthnContext>
+            <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</saml:AuthnContextClassRef>
+        </saml:AuthnContext>
+    </saml:AuthnStatement>
+    <saml:AttributeStatement>
+        <saml:Attribute Name="email">
+            <saml:AttributeValue>user@example.com</saml:AttributeValue>
+        </saml:Attribute>
+    </saml:AttributeStatement>
+</saml:Assertion>

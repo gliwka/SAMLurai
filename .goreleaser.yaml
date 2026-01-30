@@ -1,0 +1,132 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+    - go mod verify
+
+builds:
+  - id: samlurai
+    binary: samlurai
+    main: .
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X github.com/gliwka/SAMLurai/cmd.version={{.Version}}
+    mod_timestamp: '{{ .CommitTimestamp }}'
+
+archives:
+  - id: default
+    formats:
+      - tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- .Os }}_
+      {{- .Arch }}
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+    files:
+      - README.md
+      - LICENSE*
+
+checksum:
+  name_template: 'checksums.txt'
+  algorithm: sha256
+
+sboms:
+  - id: default
+    artifacts: archive
+    documents:
+      - "${artifact}.sbom.json"
+
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  use: github
+  groups:
+    - title: '🚀 Features'
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 0
+    - title: '🐛 Bug Fixes'
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 1
+    - title: '📚 Documentation'
+      regexp: '^.*?docs(\([[:word:]]+\))??!?:.+$'
+      order: 2
+    - title: '🧪 Tests'
+      regexp: '^.*?test(\([[:word:]]+\))??!?:.+$'
+      order: 3
+    - title: '🔧 Maintenance'
+      regexp: '^.*?(chore|ci|build|refactor|style|perf)(\([[:word:]]+\))??!?:.+$'
+      order: 4
+    - title: '⚠️ Breaking Changes'
+      regexp: '^.*?!:.+$'
+      order: 5
+    - title: Other
+      order: 999
+  filters:
+    exclude:
+      - '^Merge '
+      - '^merge '
+
+release:
+  github:
+    owner: gliwka
+    name: SAMLurai
+  draft: false
+  prerelease: auto
+  mode: replace
+  header: |
+    ## SAMLurai {{ .Version }}
+    
+    Welcome to this release of SAMLurai! 🥷
+  footer: |
+    ---
+    
+    **Full Changelog**: https://github.com/gliwka/SAMLurai/compare/{{ .PreviousTag }}...{{ .Tag }}
+    
+    ## Installation
+    
+    ### Homebrew (macOS/Linux)
+    ```bash
+    brew install gliwka/tap/samlurai
+    ```
+    
+    ### Download Binary
+    Download the appropriate binary for your platform from the assets below.
+    
+    ### Verify Checksums
+    ```bash
+    sha256sum -c checksums.txt
+    ```
+  name_template: "v{{.Version}}"
+
+homebrew_casks:
+  - name: samlurai
+    repository:
+      owner: gliwka
+      name: homebrew-tap
+      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
+    homepage: "https://github.com/gliwka/SAMLurai"
+    description: "CLI tool for debugging SAML assertions"
+    directory: Casks
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/samlurai"]
+          end
